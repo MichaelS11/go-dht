@@ -189,15 +189,11 @@ Loop:
 		startTime = time.Now()
 		humidityTemp, temperatureTemp, err = dht.Read()
 		if err != nil {
-			fmt.Println(err)
 			continue
 		}
 
 		*humidity = humidityTemp
 		*temperature = temperatureTemp
-
-		fmt.Println(*humidity)
-		fmt.Println(*temperature)
 	}
 
 	close(stopped)
