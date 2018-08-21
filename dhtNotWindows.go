@@ -10,7 +10,6 @@ import (
 
 	"periph.io/x/periph/conn/gpio"
 	"periph.io/x/periph/conn/gpio/gpioreg"
-	"periph.io/x/periph/host"
 )
 
 // NewDHT to create a new DHT struct.
