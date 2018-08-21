@@ -113,7 +113,7 @@ func (dht *DHT) bitsToValues(bits []int) (humidity float64, temperature float64,
 		if dht.temperatureUnit == Celsius {
 			temperature = float64(temperatureInt) / 10.0
 		} else {
-			temperature = float64(temperatureInt)/10.0*9.0/5000.0 + 32.0
+			temperature = float64(temperatureInt)*9.0/50.0 + 32.0
 		}
 
 		return
@@ -138,7 +138,7 @@ func (dht *DHT) bitsToValues(bits []int) (humidity float64, temperature float64,
 	if dht.temperatureUnit == Celsius {
 		temperature = float64(temperatureInt)
 	} else {
-		temperature = float64(temperatureInt)*9.0/5000.0 + 32.0
+		temperature = float64(temperatureInt)*9.0/5.0 + 32.0
 	}
 
 	return
