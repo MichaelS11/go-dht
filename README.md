@@ -57,7 +57,6 @@ func main() {
 	fmt.Printf("humidity: %v\n", humidity)
 	fmt.Printf("temperature: %v\n", temperature)
 }
-
 ```
 
 
@@ -100,10 +99,10 @@ func main() {
 	fmt.Printf("humidity: %v\n", humidity)
 	fmt.Printf("temperature: %v\n", temperature)
 
-	// when done reading and to stop ReadBackground, close stop channel
+	// to stop ReadBackground after done with reading, close the stop channel
 	close(stop)
 
-	// can check stopped channel to get when ReadBackground has stopped
+	// can check stopped channel to know when ReadBackground has stopped
 	<-stopped
 }
 ```
@@ -142,5 +141,4 @@ func main() {
 	fmt.Printf("humidity: %v\n", humidity)
 	fmt.Printf("temperature: %v\n", temperature)
 }
-
 ```
