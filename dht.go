@@ -156,44 +156,40 @@ func (dht *DHT) ReadRetry(maxRetries int) (humidity float64, temperature float64
 	return
 }
 
-// ReadBackground it means to run in the background, run as a Goroutine.
+// ReadBackground it meant to be run in the background, run as a Goroutine.
 // sleepDuration is how long it will try to sleep between reads.
 // If there is ongoing read errors there will be no notice except that the values will not be updated.
-// Will continue to read sensor until stop is set to true.
+// Will continue to read sensor until stop is closed.
 // After it has been stopped, the stopped chan will be closed.
 // Will panic if humidity, temperature, or stop are nil.
 func (dht *DHT) ReadBackground(humidity *float64, temperature *float64, sleepDuration time.Duration, stop chan struct{}, stopped chan struct{}) {
 	var humidityTemp float64
 	var temperatureTemp float64
 	var err error
-	startTime := time.Now().Add(-sleepDuration)
+	var startTime time.Time
 
 Loop:
 	for {
+		startTime = time.Now()
+		humidityTemp, temperatureTemp, err = dht.Read()
 		if err == nil {
-			// no read error, wait for sleepDuration or stop
+			// no read error, save result
+			*humidity = humidityTemp
+			*temperature = temperatureTemp
+			// wait for sleepDuration or stop
 			select {
 			case <-time.After(sleepDuration - time.Since(startTime)):
 			case <-stop:
 				break Loop
 			}
 		} else {
-			// read error, just check wait for stop
+			// read error, just check for stop
 			select {
 			case <-stop:
 				break Loop
 			default:
 			}
 		}
-
-		startTime = time.Now()
-		humidityTemp, temperatureTemp, err = dht.Read()
-		if err != nil {
-			continue
-		}
-
-		*humidity = humidityTemp
-		*temperature = temperatureTemp
 	}
 
 	close(stopped)
