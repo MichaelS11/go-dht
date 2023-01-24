@@ -2,9 +2,8 @@ package dht
 
 import (
 	"fmt"
+	"periph.io/x/host/v3"
 	"time"
-
-	"periph.io/x/periph/host"
 )
 
 // HostInit calls periph.io host.Init(). This needs to be done before DHT can be used.
