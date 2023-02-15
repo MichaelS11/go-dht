@@ -1,8 +1,9 @@
 package dht
 
 import (
-	"periph.io/x/conn/v3/gpio"
 	"time"
+
+	"periph.io/x/conn/v3/gpio"
 )
 
 // TemperatureUnit is the temperature unit wanted, either Celsius or Fahrenheit

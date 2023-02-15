@@ -1,15 +1,15 @@
 //go:build !windows
-// +build !windows
 
 package dht
 
 import (
 	"fmt"
-	"periph.io/x/conn/v3/gpio"
-	"periph.io/x/conn/v3/gpio/gpioreg"
 	"runtime/debug"
 	"strings"
 	"time"
+
+	"periph.io/x/conn/v3/gpio"
+	"periph.io/x/conn/v3/gpio/gpioreg"
 )
 
 // NewDHT to create a new DHT struct.
