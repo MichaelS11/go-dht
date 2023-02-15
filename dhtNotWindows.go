@@ -1,3 +1,4 @@
+//go:build !windows
 // +build !windows
 
 package dht
@@ -8,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"periph.io/x/periph/conn/gpio"
-	"periph.io/x/periph/conn/gpio/gpioreg"
+	"periph.io/x/conn/v3/gpio"
+	"periph.io/x/conn/v3/gpio/gpioreg"
 )
 
 // NewDHT to create a new DHT struct.
@@ -142,7 +143,7 @@ func (dht *DHT) readBits() ([]int, error) {
 		if durations[i] > 70*time.Microsecond {
 			return nil, fmt.Errorf("missing some readings - low level duration too long: %v", durations[i])
 		}
-		// low should not be shorter then 35 microseconds
+		// low should not be shorter than 35 microseconds
 		if durations[i] < 35*time.Microsecond {
 			return nil, fmt.Errorf("missing some readings - low level duration too short: %v", durations[i])
 		}

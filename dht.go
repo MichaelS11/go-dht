@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"periph.io/x/periph/host"
+	"periph.io/x/host/v3"
 )
 
 // HostInit calls periph.io host.Init(). This needs to be done before DHT can be used.
